@@ -39,17 +39,17 @@ def contador_numeros(lista_numeros):
     repetidos = {}
     if type(lista_numeros) != list:
         return None
-    if all(type(list[i]) for i in lista_numeros) not in (int, float):
-        for value in lista_numeros:
-            if value not in repetidos:
-                repetidos[value] = 1
-            else:
-                repetidos[value] += 1
-    else:
-        return None
+    for i in lista_numeros:
+        if type(i) not in (int, float):
+            return None
+    for value in lista_numeros:
+        if value not in repetidos:
+            repetidos[value] = 1
+        else:
+            repetidos[value] += 1
     repetidos_ordenados = dict(sorted(repetidos.items(), key= lambda item:item[1], reverse=True))
     num, times = next(iter(repetidos_ordenados.items()))
-    return f"Uno de los valores más repetidos fue {num} y se repitió {times} veces"
+    return f"Uno de los valores más repetidos fue {num}, y se repitió {times} veces"
 
 
 def conversor_temperature(value= 0.0, start="", end=""):
